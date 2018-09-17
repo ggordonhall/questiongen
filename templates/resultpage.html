@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+
+<head>
+  <!-- Meta Tags -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Question Generator</title>
+  <link rel="shortcut icon" href="{{ url_for('static',filename='qm.jpg') }}" type="image/x-icon" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/result.css') }}" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Fira+Sans" />
+
+  <!-- Generic Javascript and jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- Custom Scripts -->
+  <script type="text/javascript">
+    $(document).ready(function () {
+      setTimeout(function () {
+        $("#tout").fadeOut();
+      }, 1800);
+      setTimeout(function () {
+        $(".results-container").fadeIn();
+        FB.XFBML.parse();
+      }, 2300);
+    });
+  </script>
+</head>
+
+<body class="main">
+  <header class="header">
+    <div class="title-div">
+      <a id="title_text" href="{{ url_for('input') }}">Question Generator</a>
+    </div>
+  </header>
+
+  <div class="main-content">
+    <main class="content">
+      <div id="tout">
+        <div>
+          <div>
+            <div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="results-container">
+        <h3 class="dialogue">You entered: </h3>
+        <h2 class="input">{{ inp_text}} </h2>
+        <div class="space"></div>
+        <h3 class="dialogue">And the model asked: </h3>
+        <h2 class="question">
+          {% for line in question %}
+          <div>{{ line }}<br /></div>
+          {% endfor %}
+        </h2>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <div class="credits">
+      <p>
+        By <a href="mailto:ggordonhall@gmail.com">Gabriel Gordon-Hall</a>
+      </p>
+    </div>
+  </footer>
+</body>
+
+</html>

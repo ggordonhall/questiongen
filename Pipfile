@@ -1,0 +1,28 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[[source]]
+url = "git+https://github.com/pytorch/text"
+verify_ssl = false
+name = "torchtext"
+
+[packages]
+tqdm = "*"
+six = "*"
+future = "*"
+spacy = "*"
+quart = "*"
+flask-wtf = "*"
+torch = "==0.4.0"
+torchvision = "*"
+pytest = "*"
+nltk = "*"
+
+[dev-packages]
+"autopep8" = "*"
+"pylint" = "*"
+
+[requires]
+python_version = "3.6"

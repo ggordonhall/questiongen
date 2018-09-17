@@ -1,0 +1,12 @@
+{
+    "s": {
+        "name": "sentence",
+        "path": "sent.pt",
+        "char_lim": 300
+    },
+    "p": {
+        "name": "paragraph",
+        "path": "para.pt",
+        "char_lim": 2000
+    }
+}

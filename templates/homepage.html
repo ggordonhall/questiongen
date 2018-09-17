@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+
+<head>
+  <!-- Meta Tags -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Question Generator</title>
+  <link rel="shortcut icon" href="{{ url_for('static',filename='qm.jpg') }}" type="image/x-icon" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/home.css') }}" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Fira+Sans" />
+
+  <!-- Generic Javascript and jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- Custom Scripts -->
+  <script type="text/javascript">
+    $(function () {
+      $('form[id="textbox"]').submit(function (e) {
+        var input_text = $('form[id="textbox"] input[id="input_text"]').val();
+        if (input_text == '') {
+          e.preventDefault();
+          $("#error").text('\u00A0\u00A0Please enter some text!');
+          $(".error").toggleClass("error-change");
+        }
+      });
+    })
+  </script>
+</head>
+
+<body class="main">
+  <header>
+    <div class="title-div">
+      <h1 style="font-size:550%">Question Generator</h1>
+    </div>
+  </header>
+
+  <div class="main-content">
+    <main class="form-content">
+      <div class="container">
+        <form id="textbox" class="textbox" action="" method='post'>
+          {{ form.csrf_token }}
+          {{ form.hidden_tag() }}
+          <div class="select-box">
+            <label for="#model_type" class="sr-only">Select a model</label>
+            {{ form.model_type(id="model_type") }}
+            <h3>Do you want to ask a question about a sentence or paragraph? </h3>
+          </div>
+          <div class="space"></div>
+          <label for="#input_text" class="sr-only">Enter some text</label>
+          {{ form.input_text(id="input_text", placeholder=" Enter some text...", autocomplete="off",
+          contenteditable="true", maxlength="2000") }}
+          <div id="error" class="error"></div>
+          <div class="btn-box">
+            <label for="#div_factor" class="sr-only"> Enter a diversity factor</label>
+            {{ form.div_factor(id="div_factor", placeholder=" Enter a δ (default 0.6)", autocomplete="off") }}
+            {{ form.submit(class_="btn btn-warning") }}
+          </div>
+      </div>
+      </form>
+    </main>
+  </div>
+
+  <footer>
+    <div class="credits">
+      <p>
+        By <a href="mailto:ggordonhall@gmail.com">Gabriel Gordon-Hall</a>
+      </p>
+    </div>
+  </footer>
+</body>
+
+</html>
